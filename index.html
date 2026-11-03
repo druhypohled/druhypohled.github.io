@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 fotek které fungují na seznamce · Druhý pohled</title>
+<meta name="description" content="Checklist profilu který přitahuje — ne odpuzuje. Stáhni zdarma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg2: #111822;
+  --card: #141d2b;
+  --border: #1e2d42;
+  --teal: #00d4c8;
+  --teal-dim: #00a89e;
+  --blue: #00bfff;
+  --fg: #f0f4f8;
+  --muted: #8ba0b8;
+  --yes: #00d4c8;
+  --no: #ff5c7a;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.hero {
+  background: var(--bg);
+  text-align: center;
+  padding-block: 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% -80px, rgba(0,212,200,.13) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 80% 120%, rgba(0,191,255,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(0,212,200,.3);
+  border-radius: 100px;
+  padding: 5px 14px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 8vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero .sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 420px;
+  margin: 0 auto 36px;
+}
+.stat-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--teal);
+  display: block;
+}
+.stat-lbl { font-size: .78rem; color: var(--muted); letter-spacing: .04em; }
+.form-wrap { max-width: 420px; margin: 0 auto; }
+.form-hint { font-size: .8rem; color: var(--muted); margin-bottom: 12px; }
+.input-group { display: flex; flex-direction: column; gap: 10px; }
+.input-group input {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  padding: 13px 16px;
+  outline: none;
+  transition: border-color .2s;
+}
+.input-group input:focus { border-color: var(--teal); }
+.input-group input::placeholder { color: var(--muted); }
+.btn-primary {
+  width: 100%;
+  background: var(--teal);
+  color: #0d1117;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: .02em;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+.btn-primary:hover { background: var(--teal-dim); }
+.btn-primary:active { transform: scale(.98); }
+.privacy { font-size: .75rem; color: var(--muted); margin-top: 10px; text-align: center; }
+.success-box {
+  display: none;
+  background: rgba(0,212,200,.08);
+  border: 1.5px solid rgba(0,212,200,.3);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+}
+.success-box .icon { font-size: 2rem; margin-bottom: 10px; }
+.success-box h3 { font-family: var(--font-head); font-size: 1.2rem; margin-bottom: 8px; }
+.success-box p { color: var(--muted); font-size: .9rem; }
+.success-box .dl-btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: var(--teal);
+  color: #0d1117;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .95rem;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.divider {
+  width: 48px; height: 3px;
+  background: var(--teal);
+  border-radius: 2px;
+  margin: 0 auto 48px;
+}
+.section { max-width: 600px; margin: 0 auto; padding-block: 0 64px; }
+.section-eyebrow {
+  font-size: .75rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+}
+.section h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 800; line-height: 1.2; margin-bottom: 32px;
+}
+.photo-cards { display: flex; flex-direction: column; gap: 16px; }
+.photo-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 20px 18px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 0 16px;
+  align-items: start;
+}
+.photo-card .num {
+  font-family: var(--font-head);
+  font-size: 1.4rem; font-weight: 800; color: var(--teal); line-height: 1; padding-top: 3px;
+}
+.photo-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.photo-card p { font-size: .875rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: .72rem; font-weight: 600; letter-spacing: .04em; border-radius: 6px; padding: 3px 9px; }
+.tag.yes { background: rgba(0,212,200,.12); color: var(--yes); border: 1px solid rgba(0,212,200,.25); }
+.tag.no { background: rgba(255,92,122,.10); color: var(--no); border: 1px solid rgba(255,92,122,.22); }
+.hook-band {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding-block: 48px;
+  margin-bottom: 64px;
+  text-align: center;
+}
+.hook-band blockquote {
+  font-family: var(--font-head);
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  font-weight: 700;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.3;
+}
+.hook-band blockquote em { font-style: normal; color: var(--teal); }
+.bottom-cta { max-width: 480px; margin: 0 auto; padding-block: 0 80px; text-align: center; }
+.bottom-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 800; margin-bottom: 12px;
+}
+.bottom-cta p { color: var(--muted); margin-bottom: 28px; font-size: .95rem; }
+footer {
+  border-top: 1px solid var(--border);
+  padding-block: 24px;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--muted);
+}
+footer a { color: var(--teal); text-decoration: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="brand-tag">Druhý pohled · Průvodce zdarma</div>
+  <h1>5 fotek které<br><em>fungují na seznamce</em></h1>
+  <p class="sub">Checklist profilu který přitahuje — ne odpuzuje. Stáhni zdarma.</p>
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num">3 s</span><span class="stat-lbl">tolik máš na první dojem</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-lbl">fotek které mění výsledky</span></div>
+    <div class="stat"><span class="stat-num">zdarma</span><span class="stat-lbl">bez kreditní karty</span></div>
+  </div>
+  <div class="form-wrap">
+    <p class="form-hint">Zadej email a průvodce ti přijde okamžitě 👇</p>
+    <div id="form-area">
+      <div class="input-group">
+        <input type="text" id="inp-name" placeholder="Tvoje jméno" autocomplete="given-name">
+        <input type="email" id="inp-email" placeholder="Email adresa" autocomplete="email">
+        <button class="btn-primary" onclick="handleSubmit()">Chci průvodce zdarma →</button>
+      </div>
+      <p class="privacy">🔒 Žádný spam. Odhlásit se můžeš kdykoliv.</p>
+    </div>
+    <div class="success-box" id="success-box">
+      <div class="icon">🎉</div>
+      <h3>Průvodce je na cestě!</h3>
+      <p>Zkontroluj email – průvodce dorazí do pár minut.<br>Mezitím nás sleduj na Instagramu.</p>
+      <a class="dl-btn" href="https://drive.google.com/file/d/1rbpSbT8bdypYk_-1HpqxR_LEzIEaWFzO/view?usp=sharing" target="_blank">⬇ Stáhnout průvodce PDF</a>
+      <p style="margin-top:14px;font-size:.82rem;color:var(--muted)">Sleduj nás na <a href="https://instagram.com/druhypohled.online" target="_blank" style="color:var(--teal);text-decoration:none">@druhypohled.online</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section reveal">
+  <p class="section-eyebrow">Co se dozvíš</p>
+  <h2>Pět fotek. Každá říká něco jiného.</h2>
+  <div class="photo-cards">
+    <div class="photo-card reveal">
+      <div class="num">1</div>
+      <div>
+        <h3>Hlavní fotka: jasný obličej, přirozený úsměv</h3>
+        <p>Jediné co lidé vidí ve výsledcích hledání. Musí to být tvůj obličej.</p>
+        <div class="tags">
+          <span class="tag yes">✓ Denní světlo, čistý background</span>
+          <span class="tag no">✗ Brýle zakrývající oči, tma</span>
+        </div>
+      </div>
+    </div>
+    <div class="photo-card reveal">
+      <div class="num">2</div>
+      <div>
+        <h3>Fotka v akci: dělej něco co tě baví</h3>
+        <p>Druhá fotka říká: tohle je můj život. Sport, cestování, vaření.</p>
+        <div class="tags">
+          <span class="tag yes">✓ Sport, výlet, práce na projektu</span>
+          <span class="tag no">✗ Náhodná selfie, auto jako "aktivita"</span>
+        </div>
+      </div>
+    </div>
+    <div class="photo-card reveal">
+      <div class="num">3</div>
+      <div>
+        <h3>Sociální fotka: s lidmi (kde jsi jasně vidět)</h3>
+        <p>Říká: mám sociální život, nejsem samotář. Max 3 lidi v záběru.</p>
+        <div class="tags">
+          <span class="tag yes">✓ Jsi v centru, přirozený moment</span>
+          <span class="tag no">✗ 5 podobně vypadajících lidí</span>
+        </div>
+      </div>
+    </div>
+    <div class="photo-card reveal">
+      <div class="num">4</div>
+      <div>
+        <h3>Kontextová fotka: místo nebo zážitek</h3>
+        <p>Výlet, kavárna, koncert — fotka která vypráví příběh a dává téma na konverzaci.</p>
+        <div class="tags">
+          <span class="tag yes">✓ Zajímavé místo kde jsi viditelný</span>
+          <span class="tag no">✗ Krajina bez tebe</span>
+        </div>
+      </div>
+    </div>
+    <div class="photo-card reveal">
+      <div class="num">5</div>
+      <div>
+        <h3>Wildcard: fotka která tě odlišuje</h3>
+        <p>Tvoje trumfová karta. Něco neočekávaného — mazlíček, koníček, moment který říká "tohle jsem jen já".</p>
+        <div class="tags">
+          <span class="tag yes">✓ Neobvyklý zážitek, osobitý moment</span>
+          <span class="tag no">✗ Další selfie v zrcadle</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hook-band">
+  <blockquote>
+    Průměrný uživatel seznamky rozhodne do <em>3 sekund</em>.<br>Ne o tobě — o tvých fotkách.
+  </blockquote>
+</div>
+
+<div class="bottom-cta reveal">
+  <h2>Chceš vědět jak<br>na <span style="color:var(--teal)">zbytek profilu?</span></h2>
+  <p>Fotky jsou základ. Bio, první věta a způsob jak odpovídat — to rozhoduje jestli se z matche stane konverzace. Sleduj nás a dozvíš se víc.</p>
+  <button class="btn-primary" style="max-width:320px;margin:0 auto 16px;" onclick="scrollToForm()">Stáhnout průvodce zdarma</button>
+  <p style="color:var(--muted);font-size:.85rem;">nebo sleduj <a href="https://instagram.com/druhypohled.online" target="_blank" style="color:var(--teal);text-decoration:none;">@druhypohled.online</a></p>
+</div>
+
+<footer>
+  <p>© 2026 <strong>Druhý pohled</strong> · Tipy pro seznamování každý druhý den</p>
+  <p style="margin-top:6px"><a href="https://instagram.com/druhypohled.online" target="_blank">Instagram</a> &nbsp;·&nbsp; <a href="https://facebook.com" target="_blank">Facebook</a></p>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  function scrollToForm() {
+    document.getElementById('inp-name').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('inp-name').focus(), 400);
+  }
+
+  async function handleSubmit() {
+    const name = document.getElementById('inp-name').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('inp-email').focus();
+      document.getElementById('inp-email').style.borderColor = 'var(--no)';
+      return;
+    }
+    try { localStorage.setItem('dp_lead', JSON.stringify({ name, email, ts: Date.now() })); } catch(e) {}
+    const brevoUrl = 'https://3d2fd463.sibforms.com/serve/MUIFAAhKS8DojJtxVMzScsN75_GhU-YxYKv4b2PESiFsiwhvotDm48d_qqj6a773TlluPvF3k_oHlMn2jxCrTiwg7UL1uDgPMJbqN_-Yn8mKTF31V1HgT3ltkaw_ffroP2iKLVkGRdsdv_58xwap7HHmUFxlNRPtIKxHqi5h2H-UW_EpreTM1hekm0rot2zF_0Al_sWrZv069jKKRw==';
+    window.open(brevoUrl, '_blank');
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('success-box').style.display = 'block';
+  }
+</script>
+</body>
+</html>
